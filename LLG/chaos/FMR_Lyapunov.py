@@ -123,7 +123,7 @@ if __name__ == '__main__':
     plotB = [[0, 0, -1.2], [0, 0, 2.4]]
 
     gamma = 0.17
-    Amp = 8000
+    Amp = 1000
     omega = 3
     theta = [0, 0, 0]
     unit = [0, 0, 1]
