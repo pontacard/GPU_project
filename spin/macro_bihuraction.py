@@ -61,6 +61,7 @@ def FMR_thermal_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,K
     plt.savefig(f"FMR_thermal_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}GHz_{sigma}.pdf")
 
 
+
 ther_dt = 0.01
 
 

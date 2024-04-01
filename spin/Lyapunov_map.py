@@ -4,6 +4,7 @@ from chaos.duffing import Duffing
 from chaos.FMR_duffing import FMR_Duffing
 from chaos.SOT_duffing import SOT_Duffing
 from chaos.FMR import FMR
+from chaos.thermal_FMR import Thermal_FMR
 
 def Lyapunov_map(alpha, beta, gamma,omega, t,  t_eval, X0,sta_B,end_B,step_B):
     B_ran = [sta_B, end_B]
@@ -63,23 +64,44 @@ def ax_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase, t,  t_eval, S0,sta_B,en
         Bac[ax] = Bacsc
         duf = FMR(alpha, gamma,B,K, Bac, omega,phase, t, t_eval, S0)
         Lya = duf.matsunaga_Lyapunov([0.01, 0, 0], 200,0.03)
-        print(Lya)
+        #print(Lya)
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [Bacsc])
-    print(B_list, Lya_list)
+    #print(B_list, Lya_list)
     plt.scatter(B_list, Lya_list, c='b', s=1)
     plt.gca().set_aspect(aspect)
     plt.savefig(f"FMR_Lyapunovmap_Bx={B}_Ky={K}_{omega}GHz.pdf")
 
+def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt, t,  t_eval, S0,sta_B,end_B,step_B,aspect = 8):
+    B_ran = [sta_B, end_B]
+    B_eval = np.linspace(*B_ran, step_B)
+    B_list = np.empty(0)
+    Lya_list = np.empty(0)
+    Bac = np.zeros(3)
+    sigma_Bthe = sigma_Bthe
+    ther_dt = ther_dt
+    for Bacsc in B_eval:
+        Bac[ax] = Bacsc
+        duf = Thermal_FMR(alpha, gamma, B,K, Bac,omega, phase, sigma_Bthe, ther_dt, t, t_eval, S0)
+        Lya = duf.matsunaga_Lyapunov([0.01,0,0], 200, 0.03)
+        Lya_list = np.append(Lya_list, [Lya])
+        B_list = np.append(B_list, [Bacsc])
+    # print(B_list,poi_list)
+    # plt.ylim(-0.2, 1)
+    plt.gca().set_aspect(aspect)
+    plt.scatter(B_list, Lya_list, c='b', s=1)
+    plt.savefig(f"FMR_thermal_Lyapunov_map_{B[0]}_{B[1]}_{B[2]}_{K[0]}_{K[1]}_{K[2]}_{omega}GHz_{sigma_Bthe}.pdf")
 
-t = [0,800]
+
+t = [0,8]
 t_eval = np.linspace(*t, 800001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
 #FMR_Lyapunov_map(0.05,0.17,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],4,12,200,aspect = 2)
 #SOT_Lyapunov_map(0.05,0.17,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],10,24,400,aspect = 3)
 
 B = [165,0,0]
-K = [0,200,-1000]
+K = [0,200,0]
 phase = [0,0,0]
-ax_FMR_Lyapunov_map(0.05,0.17,B,K,1,51.019,phase,t,t_eval,[np.pi/2,0.6435,0],4,40,200)
+#ax_FMR_Lyapunov_map(0.05,0.17,B,K,1,51.019,phase,t,t_eval,[np.pi/2,0.6435,0],4,40,2)
+thermal_FMR_Lyapunov_map(0.05,0.17,B,K,1,20.232,phase,0.1,0.01,t,t_eval,[np.pi/2,0.6435,0],4,20,161)
 
