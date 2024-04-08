@@ -13,7 +13,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     for B0 in B0_eval:
         duf = FMR_spin(alpha,gamma,B,S0,t,t_eval,[0,B0,0],omega,theta,Kx,Ky,Kz,beta,start,stop)
         duf.history()
-        poi = duf.poincore(ax,4980000,5000001)
+        poi = duf.poincore(ax,7880000,8000001)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list,B0_list)
