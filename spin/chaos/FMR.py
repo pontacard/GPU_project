@@ -19,7 +19,7 @@ class FMR(Tool):
         self.X0 = self.S0
 
     def func(self,t,S):
-        #print(S)
+        #print(t)
         sinth = np.sin(S[0])
         costh = np.cos(S[0])
         sinph = np.sin(S[1])
