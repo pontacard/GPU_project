@@ -21,7 +21,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     #plt.ylim(-0.2,1)
     plt.gca().set_aspect(6)
     plt.scatter(B_list,poi_list, c = 'b',s = 1)
-    plt.savefig(f"FMR_duffing_poincore_[{B[0]}_{B[1]}_{B[2]}]_[{Kx}_{Ky}_{Kz}]_{omega[1]}.pdf")
+    plt.savefig(f"FMR_duffing_poincore_[{B[0]}_{B[1]}_{B[2]}]_[{Kx}_{Ky}_{Kz}]_{omega[1]}_komine.pdf")
 
 def SOT_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,start,stop,sta_B0,end_B0,step_B0):
     B0_ran = [sta_B0, end_B0]
@@ -82,15 +82,15 @@ sigma_Bthe = np.sqrt(Bthe_2) * 1000 * ther_dt# 最後の1000はmTにするため
 print(sigma_Bthe)
 
 
-S0 = [0.825, 0.5651, 0]
+S0 = [0.825, 0.565, 0]
 
 t = [0, 800]  # t(時間)が0〜100まで動き、その時のfを求める。
-t_eval = np.linspace(*t, 5000001)
+t_eval = np.linspace(*t, 8000001)
 mu_0 = 1.2
 B0 = 10.5
 Bx = 165
 omega = 20.232
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,-1000,0,9000,4,40,361)
+FMR_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,9000,4,20,161)
 #SOT_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[omega,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,601)
