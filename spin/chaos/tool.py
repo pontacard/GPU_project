@@ -147,42 +147,49 @@ class Tool():
         Lya_expo = (Lya)/step - np.log(dist0)
         print("here",Lya_expo)
 
-
-
-    def matsunaga_Lyapunov(self,pertu,step,cal_rate):
+    def matsunaga_Lyapunov(self, pertu, step, cal_num, start_step):
         dt = (self.t[1] - self.t[0]) / len(self.t_eval)
-        Lya_dt = int(len(self.t_eval) / step)
-        dX0 = np.array(self.X0) + np.array(pertu)
+        Lya_dt = int((len(self.t_eval) - start_step) / step)
         Sol0 = sc.integrate.solve_ivp(self.func, self.t, self.X0, t_eval=self.t_eval, atol=1e-12, rtol=1e-12)
-        t_evalp = np.linspace(*[0, 20 * dt * Lya_dt], Lya_dt * 20)
-        Solp = sc.integrate.solve_ivp(self.func, [0, 20 * dt * Lya_dt], dX0, t_eval=t_evalp, atol=1e-12, rtol=1e-12)
         ans0 = Sol0.y.T
+        # print(ans0)
+        # print(np.array(ans0[start_step]) + np.array(pertu))
+
+        dX0 = np.array(ans0[start_step]) + np.array(pertu)
+        t_evalp = np.linspace(*[0, cal_num * dt * Lya_dt], Lya_dt * cal_num)
+        Solp = sc.integrate.solve_ivp(self.func, [0, cal_num * dt * Lya_dt], dX0, t_eval=t_evalp, atol=1e-12,
+                                      rtol=1e-12)
         ansp = Solp.y.T
 
-        #print(ans0, ansp)
-        dist0 = np.linalg.norm(ans0[0][:-1] - ansp[0][:-1])
+        # print(ans0, ansp)
+        dist0 = np.linalg.norm(ans0[start_step][:-1] - ansp[0][:-1])
+        print(dist0)
 
         Lya = 0
 
-        for i in range(step - 1):
-            ansp[Lya_dt][-1] = ans0[(i + 1) * Lya_dt][-1]
-            pi = np.linalg.norm(ans0[(i + 1) * Lya_dt] - ansp[Lya_dt]) / dist0
-            #print(i,pi)
-            #print(ans0[(i + 1) * Lya_dt],ansp[Lya_dt])
-            per_X0i = ans0[(i + 1) * Lya_dt] + (ansp[Lya_dt] - ans0[(i + 1) * Lya_dt])/pi
-            #per_X0i[-1] = (i + 1) * dt * Lya_dt * self.omega
-            tp = [self.t[0],self.t[1] * cal_rate]
-            #print(tp)
-            eval_len = int((len(self.t_eval) - 1) * cal_rate + 1)
-            #print(eval_len)
-            t_evalp = np.linspace(*tp,eval_len)
-            #print(tp,t_evalp)
-            Solp = sc.integrate.solve_ivp(self.func, tp, per_X0i, t_eval = t_evalp, atol=1e-12, rtol=1e-12)
+        for i in range(step):
+            # print(len(ansp), Lya_dt,(i + 1) * Lya_dt + start_step,len(ans0))
+            # print(ansp[Lya_dt] ,ans0[(i + 1) * Lya_dt + start_step])
+            ansp[Lya_dt][-1] = ans0[(i + 1) * Lya_dt + start_step][-1]
+            pi = np.linalg.norm(ans0[(i + 1) * Lya_dt + start_step] - ansp[Lya_dt]) / dist0
+            # print(i,pi)
+            # print(ans0[(i + 1) * Lya_dt], ansp[Lya_dt])
+            per_X0i = ans0[(i + 1) * Lya_dt + start_step] + (ansp[Lya_dt] - ans0[(i + 1) * Lya_dt + start_step]) / pi
+            # per_X0i[-1] = (i + 1) * dt * Lya_dt * self.omega
+            # print(t_evalp)
+
+            tp = [0, cal_num * dt * Lya_dt]
+
+            t_evalp = np.linspace(*[0, cal_num * dt * Lya_dt], Lya_dt * cal_num)
+            # print(tp,t_evalp)
+            Solp = sc.integrate.solve_ivp(self.func, tp, per_X0i, t_eval=t_evalp, atol=1e-12, rtol=1e-12)
             ansp = Solp.y.T
             Lya += np.log(pi)
-            #print(Lya)
+            print(Lya)
 
-        Lyap_expo = Lya/self.t[1]
+        cal_time = self.t[1] * (Lya_dt * step / len(self.t_eval))
+        # print(cal_time)
+        Lyap_expo = Lya / cal_time
         print(Lyap_expo)
         return Lyap_expo
 

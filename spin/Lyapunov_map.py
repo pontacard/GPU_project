@@ -22,21 +22,21 @@ def Lyapunov_map(alpha, beta, gamma,omega, t,  t_eval, X0,sta_B,end_B,step_B):
     plt.gca().set_aspect(8)
     plt.savefig(f"duffing_Lyapunovmap_{beta}_{gamma}_{omega}GHz.pdf")
 
-def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B,aspect = 8):
+def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B,per,Lya_step,start_step,aspect = 8):
     B_ran = [sta_B, end_B]
     B_eval = np.linspace(*B_ran, step_B)
     B_list = np.empty(0)
     Lya_list = np.empty(0)
     for B in B_eval:
         duf = FMR_Duffing(alpha, gamma,Bx,Ky, B, omega, t, t_eval, S0)
-        Lya = duf.matsunaga_Lyapunov([0.01, 0, 0], 200,0.02)
+        Lya = duf.matsunaga_Lyapunov(per, Lya_step,5,start_step)
         #print(Lya)
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
     plt.scatter(B_list, Lya_list, c='b', s=1)
     plt.gca().set_aspect(aspect)
-    plt.savefig(f"FMR_Lyapunovmap_Bx={Bx}_Ky={Ky}_{omega}GHz._light.pdf")
+    plt.savefig(f"FMR_Lyapunovmap_Bx={Bx}_Ky={Ky}_{omega}GHz._{start_step}.pdf")
 
 def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,step_SOT,aspect = 8):
     SOT_ran = [sta_SOT, end_SOT]
@@ -54,7 +54,7 @@ def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,st
     plt.gca().set_aspect(aspect)
     plt.savefig(f"SOT_Lyapunovmap_Bx={Bx}_Ky={Ky}_{omega}GHz_light.pdf")
 
-def ax_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase, t,  t_eval, S0,sta_B,end_B,step_B,aspect = 8):
+def ax_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase, t,  t_eval, S0,sta_B,end_B,step_B,per,Lya_step,start_step,aspect = 8):
     B_ran = [sta_B, end_B]
     B_eval = np.linspace(*B_ran, step_B)
     B_list = np.empty(0)
@@ -63,7 +63,7 @@ def ax_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase, t,  t_eval, S0,sta_B,en
     for Bacsc in B_eval:
         Bac[ax] = Bacsc
         duf = FMR(alpha, gamma,B,K, Bac, omega,phase, t, t_eval, S0)
-        Lya = duf.matsunaga_Lyapunov([0.01, 0, 0], 200,0.03)
+        Lya = duf.matsunaga_Lyapunov(per, Lya_step,5,start_step)
         #print(Lya)
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [Bacsc])
@@ -93,15 +93,15 @@ def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt
     plt.savefig(f"FMR_thermal_Lyapunov_map_{B[0]}_{B[1]}_{B[2]}_{K[0]}_{K[1]}_{K[2]}_{omega}GHz_{sigma_Bthe}.pdf")
 
 
-t = [0,8]
-t_eval = np.linspace(*t, 800001)
+t = [0,800]
+t_eval = np.linspace(*t, 8000001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
-#FMR_Lyapunov_map(0.05,0.17,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],4,12,200,aspect = 2)
+FMR_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,20,161,[0.01,0,0], 100,7880000,aspect = 2)
 #SOT_Lyapunov_map(0.05,0.17,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],10,24,400,aspect = 3)
 
 B = [165,0,0]
 K = [0,200,0]
 phase = [0,0,0]
 #ax_FMR_Lyapunov_map(0.05,0.17,B,K,1,51.019,phase,t,t_eval,[np.pi/2,0.6435,0],4,40,2)
-thermal_FMR_Lyapunov_map(0.05,0.17,B,K,1,20.232,phase,0.1,0.01,t,t_eval,[np.pi/2,0.6435,0],4,20,161)
+#thermal_FMR_Lyapunov_map(0.05,0.17,B,K,1,20.232,phase,0.1,0.01,t,t_eval,[np.pi/2,0.6435,0],4,20,161)
 
