@@ -96,7 +96,7 @@ def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt
 t = [0,800]
 t_eval = np.linspace(*t, 8000001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
-FMR_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,20,161,[0.01,0,0], 121,7880000,aspect = 2)
+FMR_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,20,161,[0.01,0,0], 12001,7880000,aspect = 2)
 #SOT_Lyapunov_map(0.05,0.17,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],10,24,400,aspect = 3)
 
 B = [165,0,0]
