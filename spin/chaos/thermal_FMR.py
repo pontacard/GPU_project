@@ -1,7 +1,7 @@
 import scipy as sc
 import numpy as np
 import matplotlib.pyplot as plt
-from spin.chaos.tool import Tool
+from chaos.tool import Tool
 import random
 
 
