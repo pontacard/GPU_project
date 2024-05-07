@@ -22,7 +22,6 @@ class Thermal_FMR(Tool):
         self.X0 = self.S0
 
     def func(self,t,S):
-        #print(S)
         self.t_check = t // self.ther_dt  # 時間が細かい実数値をとるから、幅ther_dtで時間を離散化する
         BT_num = int(t // self.ther_dt)
         # print(self.rndBx,t // self.ther_dt)
