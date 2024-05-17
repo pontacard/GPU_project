@@ -34,9 +34,9 @@ def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
-    plt.scatter(B_list, Lya_list, c='b', s=1)
+    plt.scatter(B_list, Lya_list, c='b', s=3)
     plt.gca().set_aspect(aspect)
-    plt.savefig(f"FMR_Lyapunovmap_Bx={Bx}_Ky={Ky}_{omega}GHz._start_step={start_step}_Lyastep={Lya_step}.pdf")
+    plt.savefig(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_oubutsu.pdf")
 
 def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,step_SOT,per,Lya_step,start_step,aspect = 8):
     SOT_ran = [sta_SOT, end_SOT]
@@ -96,7 +96,7 @@ def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt
 t = [0,800]
 t_eval = np.linspace(*t, 8000001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
-FMR_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,24,321,[0.01,0,0], 121,7000000,aspect = 2)
+FMR_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,24,321,[0.01,0,0], 10001,7000000,aspect = 2)
 #SOT_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],4,24,321,[0.01,0,0], 121,7000000,aspect = 2)
 
 B = [165,0,0]
