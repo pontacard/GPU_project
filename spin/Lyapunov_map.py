@@ -35,7 +35,7 @@ def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
     plt.scatter(B_list, Lya_list, c='b', s=10)
-    plt.gca().set_aspect(aspect)
+    #plt.gca().set_aspect(aspect)
     plt.savefig(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_oubutsu_bigs.pdf")
 
 def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,step_SOT,per,Lya_step,start_step,aspect = 8):
