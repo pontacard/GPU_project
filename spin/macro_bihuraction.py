@@ -13,14 +13,16 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     for B0 in B0_eval:
         duf = FMR_spin(alpha,gamma,B,S0,t,t_eval,[0,B0,0],omega,theta,Kx,Ky,Kz,beta,start,stop)
         duf.history()
-        poi = duf.poincore(ax,7880000,8000001)
+        poi = duf.poincore(ax,7870000,8000001)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list,B0_list)
     #print(B_list,poi_list)
     #plt.ylim(-0.2,1)
     #plt.gca().set_aspect(4)
+
     plt.scatter(B_list,poi_list, c = 'b',s = 1)
+    plt.xticks([-1, 0, 1])
     plt.savefig(f"FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}.pdf")
 
 def SOT_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,start,stop,sta_B0,end_B0,step_B0):
