@@ -39,7 +39,7 @@ def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
-    with open("FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.csv") as f:
+    with open(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.csv") as f:
         writer = csv.writer(f)
         writer.writerow(np.stack([B_list,Lya_list]))
 
@@ -61,7 +61,7 @@ def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,st
         Lya_list = np.append(Lya_list, [Lya])
         SOT_list = np.append(SOT_list, [SOT])
     # print(B_list,poi_list)
-    with open("SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.csv") as f:
+    with open(f"SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.csv") as f:
         writer = csv.writer(f)
         writer.writerow(np.stack([SOT_list,Lya_list]))
     plt.scatter(SOT_list, Lya_list, c='b', s=10)
@@ -110,7 +110,7 @@ def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt
 t = [0,800]
 t_eval = np.linspace(*t, 8000001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
-FMR_Lyapunov_map(0.05,0.176335977,160,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,25,501,[0.01,0,0], 2001,6000000,aspect = 3.5)
+FMR_Lyapunov_map(0.05,0.176335977,160,0,28.14,t,t_eval,[np.pi/2,0.6005,0],0,250,501,[0.01,0,0], 2001,6000000,aspect = 3.5)
 #SOT_Lyapunov_map(0.05,0.176335977,165,200,20.232,t,t_eval,[np.pi/2,0.6435,0],0,250,501,[0.01,0,0], 10001,7000000,aspect = 2)
 
 B = [0,0,0]
