@@ -11,9 +11,9 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     B_list = np.empty(0)
     poi_list = np.empty(0)
     for B0 in B0_eval:
-        duf = FMR_spin(alpha,gamma,B,S0,t,t_eval,[0,B0,0],omega,theta,Kx,Ky,Kz,beta,start,stop)
+        duf = FMR_spin(alpha,gamma,B,S0,t,t_eval,[B0,B0,0],omega,theta,Kx,Ky,Kz,beta,start,stop)
         duf.history()
-        poi = duf.poincore(ax,7870000,8000001)
+        poi = duf.poincore(ax,7880000,8000001)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list,B0_list)
@@ -24,6 +24,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     plt.scatter(B_list,poi_list, c = 'b',s = 1)
     plt.yticks([-1, 0, 1])
     plt.savefig(f"FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.pdf")
+    #plt.show()
 
 def SOT_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,start,stop,sta_B0,end_B0,step_B0):
     B0_ran = [sta_B0, end_B0]
@@ -90,9 +91,9 @@ t = [0, 800]  # t(時間)が0〜100まで動き、その時のfを求める。
 t_eval = np.linspace(*t, 8000001)
 mu_0 = 1.2
 B0 = 10.5
-Bx = 0
-omega = 20.232
+Bx = 160
+omega = 34.55
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,9000,0,250,501)
+FMR_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,9000,0,250,501)
 #SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,24,321)1
