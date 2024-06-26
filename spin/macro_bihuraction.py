@@ -21,7 +21,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     #print(B_list,poi_list)
     #plt.ylim(-0.2,1)
     #plt.gca().set_aspect(4)
-    with open(f"FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.csv") as f:
+    with open(f"FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.csv","w") as f:
         writer = csv.writer(f)
         writer.writerow(np.stack([B_list,poi_list]))
 
@@ -44,7 +44,7 @@ def SOT_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
         B_list = np.append(B_list, B0_list)
     # print(B_list,poi_list)
     #plt.ylim(-0.2, 1)
-    with open(f"SOT_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.csv") as f:
+    with open(f"SOT_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.csv","w") as f:
         writer = csv.writer(f)
         writer.writerow(np.stack([B_list,poi_list]))
     plt.gca().set_aspect(4)
