@@ -39,14 +39,12 @@ def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
-    with open(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.csv","w") as f:
-        writer = csv.writer(f)
-        writer.writerow(np.stack([B_list,Lya_list]))
+    np.savetxt(f"csv/FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_paper.txt", np.stack([B_list,Lya_list]))
 
-    plt.scatter(B_list, Lya_list, c='b', s=5)
-    plt.yticks([-2,-1,0])
-    plt.gca().set_aspect(aspect)
-    plt.savefig(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.pdf")
+    #plt.scatter(B_list, Lya_list, c='b', s=5)
+    #plt.yticks([-2,-1,0])
+    #plt.gca().set_aspect(aspect)
+    #plt.savefig(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.pdf")
     #plt.show()
 
 def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,step_SOT,per,Lya_step,start_step,aspect = 8):
@@ -61,13 +59,14 @@ def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,st
         Lya_list = np.append(Lya_list, [Lya])
         SOT_list = np.append(SOT_list, [SOT])
     # print(B_list,poi_list)
-    with open(f"SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.csv","w") as f:
-        writer = csv.writer(f)
-        writer.writerow(np.stack([SOT_list,Lya_list]))
-    plt.scatter(SOT_list, Lya_list, c='b', s=10)
-    plt.gca().set_aspect(aspect)
-    plt.savefig(f"SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.pdf")
+    np.savetxt(f"csv/SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_paper.txt",
+               np.stack([SOT_list, Lya_list]))
 
+    # plt.scatter(B_list, Lya_list, c='b', s=5)
+    # plt.yticks([-2,-1,0])
+    # plt.gca().set_aspect(aspect)
+    # plt.savefig(f"FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_for_paper.pdf")
+    # plt.show()
 def ax_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase, t,  t_eval, S0,sta_B,end_B,step_B,per,Lya_step,start_step,aspect = 8):
     B_ran = [sta_B, end_B]
     B_eval = np.linspace(*B_ran, step_B)
