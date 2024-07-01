@@ -26,12 +26,12 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
         #writer = csv.writer(f)
         #writer.writerow(np.stack([B_list,poi_list]))
 
-    #np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.txt", np.stack([B_list,poi_list]))
+    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.txt", np.stack([B_list,poi_list]))
 
-    plt.scatter(B_list,poi_list, c = 'b',s = 1)
+    #plt.scatter(B_list,poi_list, c = 'b',s = 1)
     #plt.yticks([-1, 0, 1])
     #plt.savefig(f"FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.pdf")
-    plt.show()
+    #plt.show()
 
 def SOT_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,start,stop,sta_B0,end_B0,step_B0):
     B0_ran = [sta_B0, end_B0]
