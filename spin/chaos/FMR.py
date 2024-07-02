@@ -45,15 +45,16 @@ class FMR(Tool):
 
 
 if __name__ == '__main__':
-    t = [0,500]
-    t_eval = np.linspace(*t, 500001)#1の位は1にしないと時間ステップが有理数にならなくなる→誤差が大きくなり、正しい結果が得れない
-    B = [165,0,0]
-    K = [0, 200, -1000]
-    Bac_Amp = [0, 19, 0]
+    t = [0,1600]
+    t_eval = np.linspace(*t, 8000001)#1の位は1にしないと時間ステップが有理数にならなくなる→誤差が大きくなり、正しい結果が得れない
+    B = [160,0,0]
+    K = [0, 0, 0]
+    Bac_Amp = [0, 68.27, 0]
     Bac_phase = [0, 0, 0]
-    duff = FMR(0.05,0.17,B,K,Bac_Amp,20.232,Bac_phase,t,t_eval,[np.pi/2,0,0])
-    duff.make_Ani()
-    duff.diff_phase_graph(1,'φ','dφ/dt',490000,500000)
+    duff = FMR(0.05,0.176335977,B,K,Bac_Amp,28.65,Bac_phase,t,t_eval,[np.pi/2,0.6005,0])
+    duff.history()
+    #duff.make_Ani()
+    #duff.diff_phase_graph(1,'φ','dφ/dt',7000000,8000000)
     #duff.Lyapunov([0.001,0.001,0],1000,35000)
     cal_rate = 0.01
-    duff.FMR_matsunaga_Lyapunov([0.01,0,0],200,cal_rate)
+    Lya = duff.matsunaga_Lyapunov([0.01, 0, 0], 1001, 5, 7000000)

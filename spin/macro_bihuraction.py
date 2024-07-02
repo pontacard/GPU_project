@@ -26,7 +26,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
         #writer = csv.writer(f)
         #writer.writerow(np.stack([B_list,poi_list]))
 
-    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.txt", np.stack([B_list,poi_list]))
+    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_wide_paper.txt", np.stack([B_list,poi_list]))
 
     #plt.scatter(B_list,poi_list, c = 'b',s = 1)
     #plt.yticks([-1, 0, 1])
@@ -101,8 +101,8 @@ mu_0 = 1.2
 B0 = 10.5
 Bx = 160
 
-omega = 28.65
+omega = 20.232
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-#FMR_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,9000,0,500,251)
-SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,421)
+FMR_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,9000,0,500,251)
+#SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,421)
