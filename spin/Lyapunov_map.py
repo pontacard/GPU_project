@@ -3,7 +3,7 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from chaos.duffing import Duffing
-from chaos.FMR_duffing import FMR_Duffing
+from chaos.FMR import FMR
 from chaos.SOT_duffing import SOT_Duffing
 from chaos.FMR import FMR
 from chaos.thermal_FMR import Thermal_FMR
@@ -27,19 +27,19 @@ def Lyapunov_map(alpha, beta, gamma,omega, t,  t_eval, X0,sta_B,end_B,step_B):
     plt.gca().set_aspect(8)
     plt.savefig(f"duffing_Lyapunovmap_{beta}_{gamma}_{omega}GHz.pdf")
 
-def FMR_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_B,end_B,step_B,per,Lya_step,start_step,aspect = 12):
+def FMR_Lyapunov_map(alpha, gamma,B_ex,K,omega,phase, t,  t_eval, S0,sta_B,end_B,step_B,per,Lya_step,start_step,aspect = 12):
     B_ran = [sta_B, end_B]
     B_eval = np.linspace(*B_ran, step_B)
     B_list = np.empty(0)
     Lya_list = np.empty(0)
     for B in B_eval:
-        duf = FMR_Duffing(alpha, gamma,Bx,Ky, B, omega, t, t_eval, S0)
+        duf = FMR(alpha, gamma,B_ex,K, [0,B,0], omega,phase, t, t_eval, S0)
         Lya = duf.matsunaga_Lyapunov(per, Lya_step,5,start_step)
         #print(Lya)
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
-    np.savetxt(f"csv/FMR_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_wide_paper.txt", np.stack([B_list,Lya_list]))
+    np.savetxt(f"csv/FMR_Lyapunovmap_Bx_{B_ex[0]}_Ky_{K[1]}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_wide_paper.txt", np.stack([B_list,Lya_list]))
 
     #plt.scatter(B_list, Lya_list, c='b', s=5)
     #plt.yticks([-2,-1,0])
@@ -109,7 +109,7 @@ def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt
 t = [0,800]
 t_eval = np.linspace(*t, 8000001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
-FMR_Lyapunov_map(0.05,0.176335977,160,200,20.232,t,t_eval,[np.pi/2,0.6005,0],0,500,251,[0.01,0,0], 1001,7000000,aspect = 3.5)
+FMR_Lyapunov_map(0.05,0.176335977,[160,0,0],[0,0,0],28.65,[0,0,0],t,t_eval,[np.pi/2,0.6005,0],0,80,241,[0.01,0,0], 1001,7000000,aspect = 3.5)
 #SOT_Lyapunov_map(0.05,0.176335977,160,200,20.232,t,t_eval,[np.pi/2,0.6005,0],4,25,421,[0.01,0,0], 1001,7000000,aspect = 2)
 
 
