@@ -39,7 +39,7 @@ def FMR_Lyapunov_map(alpha, gamma,B_ex,K,omega,phase, t,  t_eval, S0,sta_B,end_B
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
-    np.savetxt(f"csv/FMR_Lyapunovmap_Bx_{B_ex[0]}_Ky_{K[1]}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_35.5-36_paper.txt", np.stack([B_list,Lya_list]))
+    np.savetxt(f"csv/FMR_Lyapunovmap_Bx_{B_ex[0]}_Ky_{K[1]}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_35.6-35.8_paper.txt", np.stack([B_list,Lya_list]))
 
     #plt.scatter(B_list, Lya_list, c='b', s=5)
     #plt.yticks([-2,-1,0])

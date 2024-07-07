@@ -26,7 +26,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
         #writer = csv.writer(f)
         #writer.writerow(np.stack([B_list,poi_list]))
 
-    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_35.5-36_paper.txt", np.stack([B_list,poi_list]))
+    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_35.6-35.8_paper.txt", np.stack([B_list,poi_list]))
 
     #plt.scatter(B_list,poi_list, c = 'b',s = 1)
     #plt.yticks([-1, 0, 1])
