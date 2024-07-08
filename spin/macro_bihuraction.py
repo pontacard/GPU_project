@@ -26,7 +26,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
         #writer = csv.writer(f)
         #writer.writerow(np.stack([B_list,poi_list]))
 
-    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_35.6-35.8_paper.txt", np.stack([B_list,poi_list]))
+    np.savetxt(f"csv/FMR_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_alpha_{alpha}_paper.txt", np.stack([B_list,poi_list]))
 
     #plt.scatter(B_list,poi_list, c = 'b',s = 1)
     #plt.yticks([-1, 0, 1])
@@ -93,15 +93,15 @@ sigma_Bthe = np.sqrt(Bthe_2) * 1000 * ther_dt# 最後の1000はmTにするため
 print(sigma_Bthe)
 
 
-S0 = [0.825, 0.565, 0]
+S0 = [1, 0, 0]
 
-t = [0, 16000]  # t(時間)が0〜100まで動き、その時のfを求める。
-t_eval = np.linspace(*t, 16000001)
+t = [0, 800]  # t(時間)が0〜100まで動き、その時のfを求める。
+t_eval = np.linspace(*t, 8000001)
 mu_0 = 1.2
 B0 = 10.5
 Bx = 160
-omega = 28.65
+omega = 21.36
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,900000,35.6,35.8,11)
+FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,900000,0,500,251)
 #SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,211)
