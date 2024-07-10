@@ -14,7 +14,7 @@ def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
     for B0 in B0_eval:
         duf = FMR_spin(alpha,gamma,B,S0,t,t_eval,[0,B0,0],omega,theta,Kx,Ky,Kz,beta,start,stop)
         duf.history()
-        poi = duf.poincore(ax,15990000,16000001)
+        poi = duf.poincore(ax,7880000,8000001)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list,B0_list)
@@ -103,5 +103,5 @@ Bx = 160
 omega = 21.36
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,900000,0,500,251)
+FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,900000,0,50,251)
 #SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,211)
