@@ -100,8 +100,8 @@ t_eval = np.linspace(*t, 8000001)
 mu_0 = 1.2
 B0 = 10.5
 Bx = 160
-omega = 21.36
+omega = 28.4
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,900000,0,50,251)
+FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0,0,0,0,900000,0,50,101)
 #SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,211)
