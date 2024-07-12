@@ -105,7 +105,6 @@ def thermal_FMR_Lyapunov_map(alpha, gamma,B,K,ax,omega,phase,sigma_Bthe, ther_dt
     plt.scatter(B_list, Lya_list, c='b', s=1)
     plt.savefig(f"Lyapunovmap/FMR_thermal_Lyapunov_map_{B[0]}_{B[1]}_{B[2]}_{K[0]}_{K[1]}_{K[2]}_{omega}GHz_{sigma_Bthe}.pdf")
 
-
 t = [0,8000]
 t_eval = np.linspace(*t, 80000001)
 #Lyapunov_map(1,32,176,8.092,t,t_eval,[0.4264,0,0], 2, 10, 400)
