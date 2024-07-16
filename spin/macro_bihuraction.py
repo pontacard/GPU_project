@@ -93,6 +93,7 @@ sigma_Bthe = np.sqrt(Bthe_2) * 1000 * ther_dt# 最後の1000はmTにするため
 print(sigma_Bthe)
 
 
+
 S0 = [1, 0, 0]
 
 t = [0, 4000]  # t(時間)が0〜100まで動き、その時のfを求める。
