@@ -123,7 +123,7 @@ for Bx in B_x_list:
     else:
         Bx +=0.01
         omega = gamma * np.sqrt(Bx * (Bx - B_ani))
-    FMR_Lyapunov_map(0.02, gamma, [Bx, 0, 0], [0, B_ani, 0], omega, [0, 0, 0], t, t_eval, [np.pi / 2, 0, 0], 0, 25,
+    FMR_Lyapunov_map(0.02, gamma, [Bx, 0, 0], [0, B_ani, 0], omega, [0, 0, 0], t, t_eval, [np.pi / 2, 0, 0], 0.1, 25,
                      51, [0, 0.01, 0], 1001, 70000000)
 
 
