@@ -107,5 +107,5 @@ omega = 21.36
 
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,Bz],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,900000,0,25,251)
+FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,Bz],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,900000,10,11,21)
 #SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,211)
