@@ -48,7 +48,7 @@ def SOT_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,
         B_list = np.append(B_list, B0_list)
     # print(B_list,poi_list)
     #plt.ylim(-0.2, 1)
-    np.savetxt(f"csv/SOT_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper.txt", np.stack([B_list,poi_list]))
+    np.savetxt(f"csv/SOT_duffing_poincore_{B[0]}_{B[1]}_{B[2]}_{Kx}_{Ky}_{Kz}_{omega[1]}_paper25-35.txt", np.stack([B_list,poi_list]))
     #plt.gca().set_aspect(4)
     #plt.scatter(B_list, poi_list, c='b', s=1)
     #plt.savefig(f"SOT_Sx_bihuraction_[{B[0]}_{B[1]}_{B[2]}]_[{Kx}_{Ky}_{Kz}]_{omega[1]}_komine.pdf")
