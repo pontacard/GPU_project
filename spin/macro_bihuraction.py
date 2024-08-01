@@ -97,15 +97,15 @@ print(sigma_Bthe)
 
 S0 = [1, 0, 0]
 
-t = [0, 4000]  # t(時間)が0〜100まで動き、その時のfを求める。
-t_eval = np.linspace(*t, 40000001)
+t = [0, 800]  # t(時間)が0〜100まで動き、その時のfを求める。
+t_eval = np.linspace(*t, 8000001)
 mu_0 = 1.2
 B0 = 10.5
 Bx = 160
 Bz = 0
-omega = 21.36
+omega = 20.232
 
 
 #FMR_thermal_bihuraction(0.05, 0,0.17,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,sigma_Bthe,ther_dt,4,25,301)
-FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,Bz],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,900000,9.75,10.75,31)
-#SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,4,25,211)
+#FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,Bz],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,900000,9.75,10.75,31)
+SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,25,35,101)
