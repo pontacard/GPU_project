@@ -59,7 +59,7 @@ def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,st
         Lya_list = np.append(Lya_list, [Lya])
         SOT_list = np.append(SOT_list, [SOT])
     # print(B_list,poi_list)
-    np.savetxt(f"csv/SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_paper25-35.txt",
+    np.savetxt(f"csv/SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_paper10-25.txt",
                np.stack([SOT_list, Lya_list]))
 
     # plt.scatter(B_list, Lya_list, c='b', s=5)
