@@ -163,7 +163,7 @@ class Tool():
 
         # print(ans0, ansp)
         dist0 = np.linalg.norm(ans0[start_step][:-1] - ansp[0][:-1])
-        print(dist0)
+        #print(dist0)
 
         Lya = 0
 
@@ -185,12 +185,12 @@ class Tool():
             Solp = sc.integrate.solve_ivp(self.func, tp, per_X0i, t_eval=t_evalp, atol=1e-12, rtol=1e-12)
             ansp = Solp.y.T
             Lya += np.log(pi)
-            print(Lya)
+            #print(Lya)
 
         cal_time = self.t[1] * (Lya_dt * step / len(self.t_eval))
         # print(cal_time)
         Lyap_expo = Lya / cal_time
-        print(Lyap_expo)
+        #print(Lyap_expo)
         return Lyap_expo
 
 
