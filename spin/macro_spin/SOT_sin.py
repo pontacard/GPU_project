@@ -61,19 +61,25 @@ class Sin_SOT(Tool):
         return dSdt
 
 if __name__ == '__main__':
-    S0 = [4/5, 3/5, 0]
+    S0 = [4 / 5, 3 / 5, 0]
 
-    t = [0, 300]  # t(時間)が0〜100まで動き、その時のfを求める。
-    t_eval = np.linspace(*t, 30001)
+    t = [0, 800]  # t(時間)が0〜100まで動き、その時のfを求める。
+    t_eval = np.linspace(*t, 8000001)
 
-    plotB = [[0, 0, -1.2], [0, 0, 2.4]]
+    # plotB = [[0, 0, -1.2], [0, 0, 2.4]]
 
-    gamma = 0.17
+    gamma = 0.176335977
+    alpha = 0.05
+    B = [160, 0, 0]
+    SOT_Amp = [0, 16, 0]
+    K = [0, 200, 0]
 
-    spin1 = Sin_SOT(0.05, gamma, [165, 0, 0], S0, t, t_eval, [0, 30, 0],[0,20.232,0],[0,0,0], 0, 200, 0, 0, 0, 400)
+    spin1 = Sin_SOT(alpha, gamma, B, S0, t, t_eval, SOT_Amp, [0, 20.232, 0], [0, 0, 0], K[0], K[1], K[2], 0, 0, 9000)
     spin1.history()
-    spin1.tSi_graph(200,300,[1])
-    spin1.make_gif()
-    print(spin1.S)
-    #spin1.Si_fourier(0,120000,1,[-1,100])
-    spin1.make_trajectory(20000,30001)
+    # spin1.tSi_graph(720,800,[1])
+    # spin1.make_gif()
+    savename = f'/Users/tatsumiryou/Spin_picture/for_paper/Magnetic_Duffing_Oscillator/raw_result/Bk={K[1]}_alt_mag_0.02/my_fourier_{B[0]}_alpha{alpha}_B0={SOT_Amp[1]}.pdf'
+    spin1.Si_fourier(7000000, 8000000, 1, [0, 25], savefig=False, save_name=savename)
+    savename = f'/Users/tatsumiryou/Spin_picture/for_paper/Magnetic_Duffing_Oscillator/raw_result/Bk={K[1]}_alt_spin/trajectry_{B[0]}_alpha{alpha}_B0={SOT_Amp[1]}.png'
+    spin1.make_trajectory(7000000, 8000000, ticks=[[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]], savefig=False,
+                          save_name=savename)

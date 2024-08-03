@@ -114,7 +114,7 @@ SOT_Lyapunov_map(0.05,0.176335977,160,200,20.232,t,t_eval,[np.pi/2,0.6005,0],10,
 gamma = 0.176335977
 
 
-"""
+
 B_x_list = np.linspace(*[100,250],51)
 B_ani = 200
 for Bx in B_x_list:
@@ -127,7 +127,7 @@ for Bx in B_x_list:
         omega = gamma * np.sqrt(Bx * (Bx - B_ani))
     FMR_Lyapunov_map(0.05, gamma, [Bx, 0, 0], [0, B_ani, 0], omega, [0, 0, 0], t, t_eval, [np.pi / 2, 0, 0], 0, 25,
                      51, [0, 0.01, 0], 1001, 70000000)
-"""
+
 
 B = [0,160,0]
 K = [0,200,0]
