@@ -14,7 +14,7 @@ def duffing_bihuraction(alpha, beta, gamma,omega, t,  t_eval, X0,sta_B,end_B,ste
     poi_list = np.empty(0)
     for B0 in B0_eval:
         duf = Duffing(alpha, beta, gamma, B0,omega, t,  t_eval, X0)
-        poi = duf.poincore(4000000, 5000000)
+        poi = duf.poincore(4950000, 5000001)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list, B0_list)
