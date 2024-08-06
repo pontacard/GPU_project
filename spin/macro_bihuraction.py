@@ -8,16 +8,17 @@ from chaos.duffing import Duffing
 import csv
 
 def duffing_bihuraction(alpha, beta, gamma,omega, t,  t_eval, X0,sta_B,end_B,step_B):
-    B_ran = [sta_B, end_B]
-    B_eval = np.linspace(*B_ran, step_B)
+    B0_ran = [sta_B, end_B]
+    B0_eval = np.linspace(*B0_ran, step_B)
     B_list = np.empty(0)
     poi_list = np.empty(0)
-    for B in B_eval:
-        duf = Duffing(alpha, beta, gamma, B,omega, t,  t_eval, X0)
+    for B0 in B0_eval:
+        duf = Duffing(alpha, beta, gamma, B0,omega, t,  t_eval, X0)
         poi = duf.poincore(4000000, 5000000)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list, B0_list)
+        print(B_list)
 
     np.savetxt(f"csv/duffing_poincore_beta_{beta}_gamma_{gamma}_{omega}GHz_paper.txt", np.stack([B_list,poi_list]))
 def FMR_bihuraction(alpha, beta, gamma,ax,B,S0,omega, t,  t_eval,theta,Kx,Ky,Kz,start,stop,sta_B0,end_B0,step_B0):
@@ -125,6 +126,6 @@ omega = 20.232
 #FMR_bihuraction(0.02, 0,0.176335977,1,[Bx,0,Bz],S0,[0,omega,0],t,t_eval,[0,0,0],0,200,0,0,900000,9.75,10.75,31)
 #SOT_bihuraction(0.05, 0,0.176335977,1,[Bx,0,0],S0,[0,omega,0],t,t_eval,[0,0,0],0 , 200,0,0,9000,10,25,151)
 
-t = [0, 500]  # t(時間)が0〜100まで動き、その時のfを求める。
+t = [0, 5]  # t(時間)が0〜100まで動き、その時のfを求める。
 t_eval = np.linspace(*t, 5000001)
 duffing_bihuraction(1,130,176, 16.08, t, t_eval,[0.4264,0,0], 20,60,201)
