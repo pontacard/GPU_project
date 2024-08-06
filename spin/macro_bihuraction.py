@@ -14,7 +14,7 @@ def duffing_bihuraction(alpha, beta, gamma,omega, t,  t_eval, X0,sta_B,end_B,ste
     poi_list = np.empty(0)
     for B0 in B0_eval:
         duf = Duffing(alpha, beta, gamma, B0,omega, t,  t_eval, X0)
-        poi = duf.poincore(4950000, 5000001)
+        poi = duf.poincore(4900000, 5000001)
         B0_list = [B0] * len(poi)
         poi_list = np.append(poi_list, poi)
         B_list = np.append(B_list, B0_list)
@@ -128,4 +128,4 @@ omega = 20.232
 
 t = [0, 500]  # t(時間)が0〜100まで動き、その時のfを求める。
 t_eval = np.linspace(*t, 5000001)
-duffing_bihuraction(1,130,176, 16.08, t, t_eval,[0.4264,0,0], 20,60,201)
+duffing_bihuraction(1,130,176, 16.08, t, t_eval,[0.4264,0,0], 20,60,401)
