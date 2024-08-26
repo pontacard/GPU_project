@@ -150,15 +150,15 @@ class Tool():
     def matsunaga_Lyapunov(self, pertu, step, cal_num, start_step):
         dt = (self.t[1] - self.t[0]) / len(self.t_eval)
         Lya_dt = int((len(self.t_eval) - start_step) / step)
-        Sol0 = sc.integrate.solve_ivp(self.func, self.t, self.X0, t_eval=self.t_eval, atol=1e-9, rtol=1e-9)
+        Sol0 = sc.integrate.solve_ivp(self.func, self.t, self.X0, t_eval=self.t_eval, atol=1e-12, rtol=1e-12)
         ans0 = Sol0.y.T
         # print(ans0)
         # print(np.array(ans0[start_step]) + np.array(pertu))
 
         dX0 = np.array(ans0[start_step]) + np.array(pertu)
         t_evalp = np.linspace(*[0, cal_num * dt * Lya_dt], Lya_dt * cal_num)
-        Solp = sc.integrate.solve_ivp(self.func, [0, cal_num * dt * Lya_dt], dX0, t_eval=t_evalp, atol=1e-9,
-                                      rtol=1e-9)
+        Solp = sc.integrate.solve_ivp(self.func, [0, cal_num * dt * Lya_dt], dX0, t_eval=t_evalp, atol=1e-12,
+                                      rtol=1e-12)
         ansp = Solp.y.T
 
         # print(ans0, ansp)

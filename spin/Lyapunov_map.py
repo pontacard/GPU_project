@@ -42,7 +42,7 @@ def FMR_Lyapunov_map(alpha, gamma,B_ex,K,omega,phase, t,  t_eval, S0,sta_B,end_B
         Lya_list = np.append(Lya_list, [Lya])
         B_list = np.append(B_list, [B])
     # print(B_list,poi_list)
-    np.savetxt(f"csv/maps_0.01/FMR_Lyapunovmap_Bx_{B_ex[0]}_Ky_{K[1]}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_alpha{alpha}_paper_0-25.txt", np.stack([B_list,Lya_list]))
+    np.savetxt(f"csv/maps_0.01_light/FMR_Lyapunovmap_Bx_{B_ex[0]}_Ky_{K[1]}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_alpha{alpha}_paper_0-25.txt", np.stack([B_list,Lya_list]))
 
     #plt.scatter(B_list, Lya_list, c='b', s=5)
     #plt.yticks([-2,-1,0])
@@ -117,7 +117,7 @@ t_eval = np.linspace(*t, 80000001)
 gamma = 0.176335977
 
 
-B_x_list = np.linspace(*[100,250],101)
+B_x_list = np.linspace(*[100,250],51)
 B_ani = 200
 for Bx in B_x_list:
     if B_ani > Bx:
@@ -128,7 +128,7 @@ for Bx in B_x_list:
         Bx +=0.01
         omega = gamma * np.sqrt(Bx * (Bx - B_ani))
     FMR_Lyapunov_map(0.01, gamma, [Bx, 0, 0], [0, B_ani, 0], omega, [0, 0, 0], t, t_eval, [np.pi / 2, 0, 0], 0, 25,
-                     101, [0, 0.01, 0], 1001, 70000000)
+                     51, [0, 0.01, 0], 1001, 70000000)
 
 
 
