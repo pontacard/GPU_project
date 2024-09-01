@@ -62,7 +62,7 @@ def SOT_Lyapunov_map(alpha, gamma,Bx,Ky,omega, t,  t_eval, S0,sta_SOT,end_SOT,st
         Lya_list = np.append(Lya_list, [Lya])
         SOT_list = np.append(SOT_list, [SOT])
     # print(B_list,poi_list)
-    np.savetxt(f"csv/SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_paper10-25.txt",
+    np.savetxt(f"csv/maps_0.05_SOT/SOT_Lyapunovmap_Bx_{Bx}_Ky_{Ky}_{omega}GHz._start_step_{start_step}_Lyastep_{Lya_step}_paper10-25.txt",
                np.stack([SOT_list, Lya_list]))
 
     # plt.scatter(B_list, Lya_list, c='b', s=5)
@@ -127,7 +127,7 @@ for Bx in B_x_list:
     else:
         Bx +=0.01
         omega = gamma * np.sqrt(Bx * (Bx - B_ani))
-    FMR_Lyapunov_map(0.01, gamma, [Bx, 0, 0], [0, B_ani, 0], omega, [0, 0, 0], t, t_eval, [np.pi / 2, 0, 0], 0, 25,
+    SOT_Lyapunov_map(0.05, gamma, [Bx, 0, 0], [0, B_ani, 0], omega, [0, 0, 0], t, t_eval, [np.pi / 2, 0, 0], 0, 50,
                      51, [0, 0.01, 0], 1001, 70000000)
 
 
